@@ -1,2 +1,8 @@
 .sass-cache/
 *.css.map
+.idea
+*.iml
+target
+admin/src/test/java/
+core/src/test/
+web/src/test/java/

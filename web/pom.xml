@@ -13,7 +13,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>info.xiaomo</groupId>
+            <groupId>com.witdor</groupId>
             <artifactId>core</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>

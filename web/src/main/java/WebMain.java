@@ -1,4 +1,4 @@
-import info.xiaomo.core.filter.CORSFilter;
+import com.witdor.core.filter.CORSFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.orm.jpa.EntityScan;
@@ -25,10 +25,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan("info.xiaomo")
-@EntityScan("info.xiaomo.*.model")
+@ComponentScan("com.witdor")
+@EntityScan("com.witdor.*.model")
 @EnableTransactionManagement
-@EnableJpaRepositories("info.xiaomo.*.dao")
+@EnableJpaRepositories("com.witdor.*.dao")
 public class WebMain {
     public static void main(String[] args) throws Exception {
         SpringApplication.run(WebMain.class, args);

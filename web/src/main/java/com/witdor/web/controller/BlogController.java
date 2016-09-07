@@ -1,8 +1,8 @@
 package com.witdor.web.controller;
 
-import info.xiaomo.core.controller.BaseController;
-import info.xiaomo.core.model.BlogModel;
-import info.xiaomo.core.service.BlogService;
+import com.witdor.core.controller.BaseController;
+import com.witdor.core.model.BlogModel;
+import com.witdor.core.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,13 +45,10 @@ public class BlogController extends BaseController {
         result = new HashMap<>();
         BlogModel model = service.findBlogById(id);
         if (model == null) {
-            result.put(code, notFound);
             return result;
         }
-        result.put(code, success);
         model.setVote(model.getVote() + 1);
         service.updateBlog(model);
-        result.put(blog, model);
         return result;
     }
 
@@ -65,13 +62,10 @@ public class BlogController extends BaseController {
         result = new HashMap<>();
         BlogModel model = service.findBlogByTitle(title);
         if (model == null) {
-            result.put(code, notFound);
             return result;
         }
-        result.put(code, success);
         model.setVote(model.getVote() + 1);
         service.updateBlog(model);
-        result.put(blog, model);
         return result;
     }
 
@@ -86,8 +80,6 @@ public class BlogController extends BaseController {
     public HashMap<String, Object> getAll(@RequestParam(value = "start", defaultValue = "1") int start, @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
         result = new HashMap<>();
         Page<BlogModel> models = service.findAll(start, pageSize);
-        result.put(code, success);
-        result.put(blogs, models);
         return result;
     }
 
@@ -97,7 +89,7 @@ public class BlogController extends BaseController {
      * @param title   title
      * @param summary summary
      * @param content content
-     * @param tagIds   tagId
+     * @param tagIds  tagId
      * @return result
      */
     @RequestMapping(value = "add", method = RequestMethod.POST)
@@ -112,7 +104,6 @@ public class BlogController extends BaseController {
         result = new HashMap<>();
         BlogModel blogModel = service.findBlogByTitle(title);
         if (blogModel != null) {
-            result.put(code, repeat);
             return result;
         }
         blogModel = new BlogModel();
@@ -120,13 +111,10 @@ public class BlogController extends BaseController {
         blogModel.setContent(content);
         blogModel.setSummary(summary);
         blogModel.setAuthor(nickName);
-        blogModel.setBlogType(blogType);
         blogModel.setStatus(0);
         blogModel.setUpdateTime(new Date());
         blogModel.setTagIds(tagIds);
         blogModel = service.addBlog(blogModel);
-        result.put(code, success);
-        result.put(blog, blogModel);
         return result;
     }
 
@@ -138,7 +126,7 @@ public class BlogController extends BaseController {
      * @param nickName nickName
      * @param summary  summary
      * @param content  content
-     * @param tagIds    tagId
+     * @param tagIds   tagId
      * @return result
      */
     @RequestMapping(value = "update", method = RequestMethod.POST)
@@ -152,7 +140,6 @@ public class BlogController extends BaseController {
         result = new HashMap<>();
         BlogModel blogModel = service.findBlogByTitle(title);
         if (blogModel == null) {
-            result.put(code, notFound);
             return result;
         }
         blogModel.setTitle(title);
@@ -162,8 +149,6 @@ public class BlogController extends BaseController {
         blogModel.setSummary(summary);
         blogModel.setTagIds(tagIds);
         blogModel = service.updateBlog(blogModel);
-        result.put(code, success);
-        result.put(blog, blogModel);
         return result;
     }
 
@@ -179,12 +164,9 @@ public class BlogController extends BaseController {
         result = new HashMap<>();
         BlogModel blogModel = service.findBlogById(id);
         if (blogModel == null) {
-            result.put(code, notFound);
             return result;
         }
         blogModel = service.deleteBlogById(id);
-        result.put(code, success);
-        result.put(blog, blogModel);
         return result;
     }
 

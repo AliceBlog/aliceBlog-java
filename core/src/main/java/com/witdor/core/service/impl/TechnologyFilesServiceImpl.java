@@ -1,8 +1,8 @@
 package com.witdor.core.service.impl;
 
-import com.witdor.core.dao.BlogDao;
-import com.witdor.core.model.BlogModel;
-import com.witdor.core.service.BlogService;
+import com.witdor.core.dao.TechnologyFilesDao;
+import com.witdor.core.model.TechnologyFilesModel;
+import com.witdor.core.service.TechnologyFilesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -27,37 +27,32 @@ import java.util.Date;
  * @Copyright(©) 2016 by xiaomo.
  **/
 @Service
-public class BlogServiceImpl implements BlogService {
+public class TechnologyFilesServiceImpl implements TechnologyFilesService {
 
     @Autowired
-    private BlogDao dao;
+    private TechnologyFilesDao dao;
 
     @Override
-    public BlogModel findBlogById(Long id) {
+    public TechnologyFilesModel findTechnologyFileById(Long id) {
         return dao.findOne(id);
     }
 
     @Override
-    public Page<BlogModel> findAll(int start, int pageSize) {
-        //        for (Iterator<BlogModel> it = blogModels.iterator(); it.hasNext(); ) {
-//            if (it.next().getStatus() == 1) {//去掉己删除的博客
-//                it.remove();
-//            }
-//        }
+    public Page<TechnologyFilesModel> findAll(int start, int pageSize) {
         Sort sort = new Sort(Sort.Direction.DESC, "vote");
         return dao.findAll(new PageRequest(start - 1, pageSize, sort));
     }
 
     @Override
-    public BlogModel addBlog(BlogModel model) {
+    public TechnologyFilesModel addTechnologyFile(TechnologyFilesModel model) {
         model.setCreateTime(new Date());
         model.setUpdateTime(new Date());
         return dao.save(model);
     }
 
     @Override
-    public BlogModel updateBlog(BlogModel model) {
-        BlogModel updateBlog = dao.findOne(model.getId());
+    public TechnologyFilesModel updateTechnologyFile(TechnologyFilesModel model) {
+        TechnologyFilesModel updateBlog = dao.findOne(model.getId());
         if (updateBlog == null) {
             return null;
         }
@@ -77,17 +72,17 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public BlogModel deleteBlogById(Long id) {
-        BlogModel blogModel = dao.findOne(id);
-        if (blogModel != null) {
+    public TechnologyFilesModel deleteTechnologyFileById(Long id) {
+        TechnologyFilesModel technologyFilesModel = dao.findOne(id);
+        if (technologyFilesModel != null) {
             dao.delete(id);
-            return blogModel;
+            return technologyFilesModel;
         }
         return null;
     }
 
     @Override
-    public BlogModel findBlogByTitle(String title) {
+    public TechnologyFilesModel findTechnologyFileByTitle(String title) {
         return dao.findByTitle(title);
     }
 }

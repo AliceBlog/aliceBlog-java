@@ -18,12 +18,12 @@ import java.io.Serializable;
  * @email: hupengbest@163.com
  * @QQ_NO: 83387856
  * @Date: 2016/9/5 17:17
- * @Description:
+ * @Description: 技术文档表
  * @Copyright(©) 2016 by xiaomo.
  **/
 @Entity
-@Table(name = "blog")
-public class BlogModel extends BaseModel implements Serializable {
+@Table(name = "technology_file")
+public class TechnologyFilesModel extends BaseModel implements Serializable {
 
     @Column(name = "title", columnDefinition = "text")
     private String title;
@@ -36,14 +36,8 @@ public class BlogModel extends BaseModel implements Serializable {
 
     private String author;
 
-    private int vote;
+    private String img;
 
-    private Long tagIds[];
-
-    /**
-     * 0正常 1己删除
-     */
-    private int status;
 
     public String getTitle() {
         return title;
@@ -69,35 +63,19 @@ public class BlogModel extends BaseModel implements Serializable {
         this.content = content;
     }
 
-    public int getVote() {
-        return vote;
-    }
-
-    public void setVote(int vote) {
-        this.vote = vote;
-    }
-
-    public Long[] getTagIds() {
-        return tagIds;
-    }
-
-    public void setTagIds(Long[] tagIds) {
-        this.tagIds = tagIds;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
     public String getAuthor() {
         return author;
     }
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 }

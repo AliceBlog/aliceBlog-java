@@ -1,6 +1,6 @@
 package com.witdor.core.dao;
 
-import com.witdor.core.model.BlogModel;
+import com.witdor.core.model.TechnologyFilesModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -19,8 +19,8 @@ import org.springframework.stereotype.Repository;
  * @Copyright(©) 2016 by xiaomo.
  **/
 @Repository
-public interface BlogDao extends JpaRepository<BlogModel, Long> {
+public interface TechnologyFilesDao extends JpaRepository<TechnologyFilesModel, Long> {
 
-    BlogModel findByTitle(String title);
+    TechnologyFilesModel findByTitle(String title);
 
 }

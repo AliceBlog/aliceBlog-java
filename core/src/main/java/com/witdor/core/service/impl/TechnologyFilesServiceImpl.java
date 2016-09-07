@@ -30,29 +30,29 @@ import java.util.Date;
 public class TechnologyFilesServiceImpl implements TechnologyFilesService {
 
     @Autowired
-    private TechnologyFilesDao dao;
+    private TechnologyFilesDao technologyFilesDao;
 
     @Override
     public TechnologyFilesModel findTechnologyFileById(Long id) {
-        return dao.findOne(id);
+        return technologyFilesDao.findOne(id);
     }
 
     @Override
     public Page<TechnologyFilesModel> findAll(int start, int pageSize) {
-        Sort sort = new Sort(Sort.Direction.DESC, "vote");
-        return dao.findAll(new PageRequest(start - 1, pageSize, sort));
+        Sort sort = new Sort(Sort.Direction.DESC, "createTime");
+        return technologyFilesDao.findAll(new PageRequest(start - 1, pageSize, sort));
     }
 
     @Override
     public TechnologyFilesModel addTechnologyFile(TechnologyFilesModel model) {
         model.setCreateTime(new Date());
         model.setUpdateTime(new Date());
-        return dao.save(model);
+        return technologyFilesDao.save(model);
     }
 
     @Override
     public TechnologyFilesModel updateTechnologyFile(TechnologyFilesModel model) {
-        TechnologyFilesModel updateBlog = dao.findOne(model.getId());
+        TechnologyFilesModel updateBlog = technologyFilesDao.findOne(model.getId());
         if (updateBlog == null) {
             return null;
         }
@@ -68,14 +68,14 @@ public class TechnologyFilesServiceImpl implements TechnologyFilesService {
         if (model.getTitle() != null) {
             updateBlog.setTitle(model.getTitle());
         }
-        return dao.save(model);
+        return technologyFilesDao.save(model);
     }
 
     @Override
     public TechnologyFilesModel deleteTechnologyFileById(Long id) {
-        TechnologyFilesModel technologyFilesModel = dao.findOne(id);
+        TechnologyFilesModel technologyFilesModel = technologyFilesDao.findOne(id);
         if (technologyFilesModel != null) {
-            dao.delete(id);
+            technologyFilesDao.delete(id);
             return technologyFilesModel;
         }
         return null;
@@ -83,6 +83,6 @@ public class TechnologyFilesServiceImpl implements TechnologyFilesService {
 
     @Override
     public TechnologyFilesModel findTechnologyFileByTitle(String title) {
-        return dao.findByTitle(title);
+        return technologyFilesDao.findByTitle(title);
     }
 }

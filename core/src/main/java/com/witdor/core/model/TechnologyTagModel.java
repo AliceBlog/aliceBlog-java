@@ -1,9 +1,9 @@
 package com.witdor.core.model;
 
 import com.witdor.core.model.base.BaseModel;
+import org.hibernate.annotations.GeneratorType;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -23,18 +23,27 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "technology_file_connection")
-public class TechnologyTagModel extends BaseModel implements Serializable {
+public class TechnologyTagModel implements Serializable {
 
-    /**
-     * 和技术文档id对应
-     */
-    private int tagId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long tagId;
 
-    public int getTagId() {
+    private Long technologyFileId;
+
+    public Long getTechnologyFileId() {
+        return technologyFileId;
+    }
+
+    public void setTechnologyFileId(Long technologyFileId) {
+        this.technologyFileId = technologyFileId;
+    }
+
+    public Long getTagId() {
         return tagId;
     }
 
-    public void setTagId(int tagId) {
+    public void setTagId(Long tagId) {
         this.tagId = tagId;
     }
 }

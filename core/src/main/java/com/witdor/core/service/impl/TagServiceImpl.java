@@ -48,6 +48,8 @@ public class TagServiceImpl implements TagService {
 
     @Override
     public void add(TagModel model) {
+        model.setCreateTime(new Date());
+        model.setUpdateTime(new Date());
         tagDao.save(model);
     }
 

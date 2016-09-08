@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -52,7 +53,13 @@ public class TagServiceImpl implements TagService {
 
     @Override
     public void update(TagModel model) {
-        tagDao.save(model);
+        TagModel one = tagDao.findOne(model.getId());
+        if (one == null) {
+            return;
+        }
+        one.setName(model.getName());
+        one.setUpdateTime(new Date());
+        tagDao.save(one);
     }
 
     @Override

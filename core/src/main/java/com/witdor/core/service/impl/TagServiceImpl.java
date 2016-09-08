@@ -44,4 +44,19 @@ public class TagServiceImpl implements TagService {
     public List<TagModel> findAll() {
         return tagDao.findAll();
     }
+
+    @Override
+    public void add(TagModel model) {
+        tagDao.save(model);
+    }
+
+    @Override
+    public void update(TagModel model) {
+        tagDao.save(model);
+    }
+
+    @Override
+    public void delById(Long id) {
+        tagDao.delete(id);
+    }
 }

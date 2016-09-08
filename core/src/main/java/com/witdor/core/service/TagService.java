@@ -27,4 +27,10 @@ public interface TagService {
 
     List<TagModel> findAll();
 
+    void add(TagModel model);
+
+    void update(TagModel model);
+
+    void delById(Long id);
+
 }

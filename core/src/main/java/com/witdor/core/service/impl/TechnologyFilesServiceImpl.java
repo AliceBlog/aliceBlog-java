@@ -52,23 +52,27 @@ public class TechnologyFilesServiceImpl implements TechnologyFilesService {
 
     @Override
     public TechnologyFilesModel updateTechnologyFile(TechnologyFilesModel model) {
-        TechnologyFilesModel updateBlog = technologyFilesDao.findOne(model.getId());
-        if (updateBlog == null) {
+        TechnologyFilesModel technologyFilesModel = technologyFilesDao.findOne(model.getId());
+        if (technologyFilesModel == null) {
             return null;
         }
         if (model.getAuthor() != null) {
-            updateBlog.setAuthor(model.getAuthor());
+            technologyFilesModel.setAuthor(model.getAuthor());
         }
         if (model.getContent() != null) {
-            updateBlog.setContent(model.getContent());
-        }
-        if (model.getSummary() != null) {
-            updateBlog.setSummary(model.getSummary());
+            technologyFilesModel.setContent(model.getContent());
         }
         if (model.getTitle() != null) {
-            updateBlog.setTitle(model.getTitle());
+            technologyFilesModel.setTitle(model.getTitle());
         }
-        return technologyFilesDao.save(model);
+        if (model.getTags() != null) {
+            technologyFilesModel.setTags(model.getTags());
+        }
+        if (model.getImg() != null) {
+            technologyFilesModel.setImg(model.getImg());
+        }
+        technologyFilesModel.setUpdateTime(new Date());
+        return technologyFilesDao.save(technologyFilesModel);
     }
 
     @Override

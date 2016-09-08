@@ -4,7 +4,11 @@ import com.witdor.core.dao.TagDao;
 import com.witdor.core.model.TagModel;
 import com.witdor.core.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * 把今天最好的表现当作明天最新的起点．．～
@@ -21,7 +25,7 @@ import org.springframework.stereotype.Service;
  * @Copyright(©) 2016 by xiaomo.
  **/
 @Service
-public class TagServiceImpl implements TagService{
+public class TagServiceImpl implements TagService {
 
     @Autowired
     private TagDao tagDao;
@@ -29,5 +33,15 @@ public class TagServiceImpl implements TagService{
     @Override
     public TagModel findById(Long id) {
         return tagDao.findOne(id);
+    }
+
+    @Override
+    public Page<TagModel> findAll(int start, int pageSize) {
+        return tagDao.findAll(new PageRequest(start - 1, pageSize));
+    }
+
+    @Override
+    public List<TagModel> findAll() {
+        return tagDao.findAll();
     }
 }

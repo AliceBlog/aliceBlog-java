@@ -22,14 +22,11 @@ import java.io.Serializable;
  * @Copyright(©) 2016 by xiaomo.
  **/
 @Entity
-@Table(name = "technology_file")
+@Table(name = "technology")
 public class TechnologyFilesModel extends BaseModel implements Serializable {
 
     @Column(name = "title", columnDefinition = "text")
     private String title;
-
-    @Column(name = "summary", columnDefinition = "text")
-    private String summary;
 
     @Column(name = "content", columnDefinition = "longtext")
     private String content;
@@ -38,13 +35,13 @@ public class TechnologyFilesModel extends BaseModel implements Serializable {
 
     private String img;
 
-    private int[] tags;
+    private String[] tags;
 
-    public int[] getTags() {
+    public String[] getTags() {
         return tags;
     }
 
-    public void setTags(int[] tags) {
+    public void setTags(String[] tags) {
         this.tags = tags;
     }
 
@@ -54,14 +51,6 @@ public class TechnologyFilesModel extends BaseModel implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getSummary() {
-        return summary;
-    }
-
-    public void setSummary(String summary) {
-        this.summary = summary;
     }
 
     public String getContent() {

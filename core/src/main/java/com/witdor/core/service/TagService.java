@@ -1,6 +1,9 @@
 package com.witdor.core.service;
 
 import com.witdor.core.model.TagModel;
+import org.springframework.data.domain.Page;
+
+import java.util.List;
 
 /**
  * 把今天最好的表现当作明天最新的起点．．～
@@ -19,5 +22,9 @@ import com.witdor.core.model.TagModel;
 public interface TagService {
 
     TagModel findById(Long id);
+
+    Page<TagModel> findAll(int start,int pageSize);
+
+    List<TagModel> findAll();
 
 }

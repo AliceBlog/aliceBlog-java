@@ -38,6 +38,15 @@ public class TechnologyFilesModel extends BaseModel implements Serializable {
 
     private String img;
 
+    private int[] tags;
+
+    public int[] getTags() {
+        return tags;
+    }
+
+    public void setTags(int[] tags) {
+        this.tags = tags;
+    }
 
     public String getTitle() {
         return title;

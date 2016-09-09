@@ -2,6 +2,7 @@ package com.witdor.web.controller;
 
 import com.witdor.core.controller.BaseController;
 import com.witdor.core.model.TagModel;
+import com.witdor.core.model.TechnologyFilesModel;
 import com.witdor.core.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -86,6 +87,18 @@ public class TagController extends BaseController {
         tagService.delById(id);
     }
 
+
+    /**
+     * 根据id删除数据
+     *
+     * @param ids ids
+     */
+    @RequestMapping(value = "delByIds", method = RequestMethod.GET)
+    public void delByIds(@RequestParam(name = "ids") Long[] ids) {
+        for (Long id : ids) {
+            tagService.delById(id);
+        }
+    }
 
     /**
      * 增

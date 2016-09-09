@@ -6,6 +6,7 @@ import com.witdor.core.service.UserService;
 import com.witdor.core.untils.MD5Util;
 import com.witdor.core.untils.RandomUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,7 +30,7 @@ import java.util.Objects;
  **/
 @RestController
 @RequestMapping("/")
-public class LoginManager extends BaseController {
+public class LoginController extends BaseController {
 
     @Autowired
     private UserService userService;
@@ -56,6 +57,11 @@ public class LoginManager extends BaseController {
         userModel.setPassword(MD5Util.encode(password, salt));
         userService.add(userModel);
         return true;
+    }
+
+    @RequestMapping(value = "/user/findAll", method = RequestMethod.GET)
+    public Page<UserModel> findAll(@RequestParam(name = "start", defaultValue = "1") int start, @RequestParam(name = "pageSize", defaultValue = "9999")int pageSize) {
+        return userService.findAll(start, pageSize);
     }
 
 }

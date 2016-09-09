@@ -1,6 +1,6 @@
 package com.witdor.core.dao;
 
-import com.witdor.core.model.TagModel;
+import com.witdor.core.model.UserModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,10 +14,14 @@ import org.springframework.stereotype.Repository;
  * @github: https://github.com/qq83387856
  * @email: hupengbest@163.com
  * @QQ_NO: 83387856
- * @Date: 2016/9/7 17:59.
+ * @Date: 2016/9/9 13:42.
  * @Description:
  * @Copyright(©) 2016 by xiaomo.
  **/
 @Repository
-public interface TagDao extends JpaRepository<TagModel,Long> {
+public interface UserDao extends JpaRepository<UserModel,Long> {
+
+    UserModel findUserByUserName(String name);
+
+
 }

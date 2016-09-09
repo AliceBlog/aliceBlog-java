@@ -51,8 +51,7 @@ public class TechnologyFilesController extends BaseController {
         Page<TechnologyFilesModel> technologyFilesModels = technologyFilesService.findAll(start, pageSize);
         List<TagModel> tags = tagService.findAll();
         List<String> hotTags = tags.stream().map(TagModel::getName).collect(Collectors.toList());
-        List<TechnologyFilesModel> content = technologyFilesModels.getContent();
-        result.put("cardList", content);
+        result.put("cardList", technologyFilesModels);
         result.put("hotTags", hotTags);
         return result;
     }

@@ -105,6 +105,18 @@ public class TechnologyFilesController extends BaseController {
 
 
     /**
+     * 根据ids删除数据
+     * @param ids ids
+     */
+    @RequestMapping(value = "delByIds", method = RequestMethod.GET)
+    public void delByIds(@RequestParam(name = "ids") Long[] ids) {
+        for (Long id : ids) {
+            technologyFilesService.deleteTechnologyFileById(id);
+        }
+    }
+
+
+    /**
      * 增
      * @param title 标题
      * @param content 内容
